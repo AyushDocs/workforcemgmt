@@ -52,8 +52,8 @@ public class InMemoryTaskRepository implements TaskRepository {
         newTask.setStatus(status);
         newTask.setPriority(priority);
         newTask.setDescription("This is a seed task.");
+        newTask.setTaskAssignTime(System.currentTimeMillis());
         newTask.setTaskDeadlineTime(System.currentTimeMillis() + 86400000);
-// 1 day from now
         taskStore.put(newId, newTask);
     }
     @Override
@@ -65,6 +65,7 @@ public class InMemoryTaskRepository implements TaskRepository {
     public TaskManagement save(TaskManagement task) {
         if (task.getId() == null) {
             task.setId(idCounter.incrementAndGet());
+            task.setTaskAssignTime(System.currentTimeMillis());
         }
         taskStore.put(task.getId(), task);
         return task;
@@ -88,6 +89,13 @@ public class InMemoryTaskRepository implements TaskRepository {
     {
         return taskStore.values().stream()
                 .filter(task -> assigneeIds.contains(task.getAssigneeId()))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<TaskManagement> findByPriority(Priority p) {
+        return taskStore.values().stream()
+                .filter(task ->task.getPriority().equals(p))
                 .collect(Collectors.toList());
     }
 }

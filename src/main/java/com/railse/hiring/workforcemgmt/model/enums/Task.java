@@ -11,9 +11,9 @@ import java.util.stream.Collectors;
 @Getter
 public enum Task {
     ASSIGN_CUSTOMER_TO_SALES_PERSON(List.of(ReferenceType.ENTITY), "Assign customer to Sales person"),
-            CREATE_INVOICE(List.of(ReferenceType.ORDER), "Create Invoice"),
-            ARRANGE_PICKUP(List.of(ReferenceType.ORDER), "Arrange Pickup"),
-            COLLECT_PAYMENT(List.of(ReferenceType.ORDER), "Collect Payment");
+    CREATE_INVOICE(List.of(ReferenceType.ORDER), "Create Invoice"),
+    ARRANGE_PICKUP(List.of(ReferenceType.ORDER), "Arrange Pickup"),
+    COLLECT_PAYMENT(List.of(ReferenceType.ORDER), "Collect Payment");
 
     private final List<ReferenceType> applicableReferenceTypes;
     private final String view;

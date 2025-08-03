@@ -30,7 +30,7 @@ public class TaskManagementController {
     }
 
     @PostMapping("/update")
-    public Response<List<TaskManagementDto>> updateTasks(@RequestBody
+    public Response<List<UpdateTaskDto>> updateTasks(@RequestBody
                                                          UpdateTaskRequest request) {
         return new Response<>(taskManagementService.updateTasks(request));
     }
@@ -47,5 +47,15 @@ public class TaskManagementController {
                                                          TaskFetchByDateRequest request) {
         return new
                 Response<>(taskManagementService.fetchTasksByDate(request));
+    }
+    @PutMapping("/priority/")
+    public Response<UpdateTaskDto> updatePriorityPriority(@RequestBody PriorityUpdateRequest request) {
+        return new Response<>(taskManagementService.updatePriority(request));
+    }
+    @GetMapping("/priority/{priority}")
+    public Response<List<UpdateTaskDto>> fetchByPriority(@PathVariable
+                                                         String priority) {
+        return new
+                Response<>(taskManagementService.fetchTasksByPriority(priority));
     }
 }

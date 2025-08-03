@@ -8,6 +8,8 @@ import com.railse.hiring.workforcemgmt.model.enums.Task;
 import com.railse.hiring.workforcemgmt.model.enums.TaskStatus;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class TaskManagementDto {
@@ -20,4 +22,20 @@ public class TaskManagementDto {
     private Long assigneeId;
     private Long taskDeadlineTime;
     private Priority priority;
+    private List<TaskCommentDto> comments;
+    private List<TaskActivityDto> activityHistory;
+
+    @Data
+    @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
+    public static  class TaskCommentDto {
+        private String commentText;
+        private Long timestamp;
+    }
+
+    @Data
+    @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
+    public static  class TaskActivityDto {
+        private String activityMessage;
+        private Long timestamp;
+    }
 }
